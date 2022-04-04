@@ -14,7 +14,7 @@ Features
 4. Understands `+` and `-` unary operators
 5. Can evaluate expressions
 6. Operator precedence works as expected
-7. `(` and `)` are allowed
+7. `(` and `)` are allowed and so are decimals
 
 # Examples
 
@@ -37,6 +37,10 @@ Features
 ## One with nested parenthesis
 
 ![image](https://user-images.githubusercontent.com/10794178/161539151-8ee049bb-f550-45a9-bebe-002b052578b1.png)
+
+## One with the power operator
+
+![image](https://user-images.githubusercontent.com/10794178/161633558-04c54288-fb50-47b5-bd82-8204657180d1.png)
 
 ## One with errors
 
