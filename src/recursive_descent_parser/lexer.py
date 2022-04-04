@@ -44,24 +44,25 @@ class Lexer:
                 self._next()
             return Token(SyntaxKind.SPACE, start, content=" ")
 
-        if self.current == "+":
-            self._next()
-            return Token(SyntaxKind.PLUS, self.position - 1, "+")
-        if self.current == "-":
-            self._next()
-            return Token(SyntaxKind.MINUS, self.position - 1, "-")
-        if self.current == "*":
-            self._next()
-            return Token(SyntaxKind.STAR, self.position - 1, "*")
-        if self.current == "/":
-            self._next()
-            return Token(SyntaxKind.FORWARD_SLASH, self.position - 1, "/")
-        if self.current == "(":
-            self._next()
-            return Token(SyntaxKind.OPEN_PAREN, self.position - 1, "(")
-        if self.current == ")":
-            self._next()
-            return Token(SyntaxKind.CLOSE_PAREN, self.position - 1, ")")
+        match self.current:
+            case "+":
+                self._next()
+                return Token(SyntaxKind.PLUS, self.position - 1, "+")
+            case "-":
+                self._next()
+                return Token(SyntaxKind.MINUS, self.position - 1, "-")
+            case "*":
+                self._next()
+                return Token(SyntaxKind.STAR, self.position - 1, "*")
+            case "/":
+                self._next()
+                return Token(SyntaxKind.FORWARD_SLASH, self.position - 1, "/")
+            case "(":
+                self._next()
+                return Token(SyntaxKind.OPEN_PAREN, self.position - 1, "(")
+            case ")":
+                self._next()
+                return Token(SyntaxKind.CLOSE_PAREN, self.position - 1, ")")
 
         self.errors.append(
             UnexpectedTokenError(f"ERROR: Bad character '{self.current}'")
