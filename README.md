@@ -1,6 +1,6 @@
 # YARDP
 
-Yet Another Recursive Descent Parser
+Yet Another Recursive Descent Parser.
 
 # About
 
@@ -43,9 +43,18 @@ Mostly a toy project to help me understand more about how parsers and compilers 
 
 ![image](https://user-images.githubusercontent.com/10794178/161539425-027ee732-9c03-41ae-840b-f970ecc45056.png)
 
+# Implementation
+
+Here are some of the implementation details
+
+1. The parser supports infinite lookahead, although since the current grammar is so simple, this is not necessary
+2. The grammar is LL1
+3. The parser presently emits "ghost" tokens - these tokens are tokens which don't exist in the input but should be - this helps simplify the error handling
+4. Whitespace is preserved by the lexer but the parser currently ignores it
+
 # Run
 
-There is only one dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs. Install it, and then run 
+There is only one dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs. Install it, and then run
 
 ```
 python src/main.py
