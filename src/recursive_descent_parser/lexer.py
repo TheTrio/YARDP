@@ -53,6 +53,9 @@ class Lexer:
                 return Token(SyntaxKind.MINUS, self.position - 1, "-")
             case "*":
                 self._next()
+                if self.current == "*":
+                    self._next()
+                    return Token(SyntaxKind.TWO_STAR, self.position - 2, "*")
                 return Token(SyntaxKind.STAR, self.position - 1, "*")
             case "/":
                 self._next()

@@ -27,6 +27,8 @@ class Evaluator:
                         return self._evaluate(left) * self._evaluate(right)
                     case SyntaxKind.FORWARD_SLASH:
                         return self._evaluate(left) // self._evaluate(right)
+                    case SyntaxKind.TWO_STAR:
+                        return self._evaluate(left) ** self._evaluate(right)
                     case _:
                         raise UnexpectedBinaryOperatorError(
                             f"Can't recognize {operator.kind} as binary operator"

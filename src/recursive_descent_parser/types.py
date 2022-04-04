@@ -19,6 +19,7 @@ class SyntaxKind(Enum):
     NUMBER_EXPRESSION = auto()
     BINARY_EXPRESSION = auto()
     PARENTHESIZED_EXPRESSION = auto()
+    TWO_STAR = auto()
 
     def __str__(self) -> str:
         return f"{self.name}"
