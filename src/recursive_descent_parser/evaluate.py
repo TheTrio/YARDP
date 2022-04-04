@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from .lexer import SyntaxKind
 from .errors import UnexpectedBinaryOperatorError
 from .parser import SyntaxTree, ExpressionSyntax
+from .types import SyntaxKind
 
 
 @dataclass

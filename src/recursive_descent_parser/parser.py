@@ -1,11 +1,12 @@
 from typing import Any, Optional
-from .lexer import Lexer, SyntaxKind, Token
+from .lexer import Lexer, Token
 from .errors import InvalidSyntaxTreeError, UnexpectedTokenError
 from .types import (
     ExpressionSyntax,
     BinaryExpressionSyntax,
     NumberExpressionSyntax,
     ParenthesizedExpression,
+    SyntaxKind,
 )
 
 
@@ -68,29 +69,29 @@ class Parser:
         return Token(kind, self.current_token.start)
 
     def parse(self):
-        tree = self._parse_add_subtract()
+        tree = self.parse_expression()
         self._match(SyntaxKind.EOF)
         return SyntaxTree(tree, self.errors)
 
-    def _parse_add_subtract(self):
-        left = self._parse_multiply_divide()
-        while self.current_token.kind in (
-            SyntaxKind.MINUS,
-            SyntaxKind.PLUS,
-        ):
-            operator = self._next()
-            right = self._parse_multiply_divide()
-            left = BinaryExpressionSyntax(left, operator, right)
-        return left
+    @staticmethod
+    def _get_binary_operator_precedence(operator: Token):
+        match operator.kind:
+            case SyntaxKind.FORWARD_SLASH | SyntaxKind.STAR:
+                return 2
+            case SyntaxKind.PLUS | SyntaxKind.MINUS:
+                return 1
+            case _:
+                return 0
 
-    def _parse_multiply_divide(self):
+    def parse_expression(self, parent_precedence=0):
         left = self._parse_primary_expression()
-        while self.current_token.kind in (
-            SyntaxKind.STAR,
-            SyntaxKind.FORWARD_SLASH,
-        ):
+
+        while True:
+            precedence = Parser._get_binary_operator_precedence(self.current_token)
+            if precedence == 0 or precedence <= parent_precedence:
+                break
             operator = self._next()
-            right = self._parse_primary_expression()
+            right = self.parse_expression()
             left = BinaryExpressionSyntax(left, operator, right)
         return left
 
@@ -99,7 +100,7 @@ class Parser:
             return NumberExpressionSyntax(self._match(SyntaxKind.NUMBER))
         if self.current_token.kind == SyntaxKind.OPEN_PAREN:
             left = self._next()
-            expression = self._parse_add_subtract()
+            expression = self.parse_expression()
             right = self._match(SyntaxKind.CLOSE_PAREN)
             return ParenthesizedExpression(left, expression, right)
         return self._match(SyntaxKind.NUMBER_EXPRESSION)
