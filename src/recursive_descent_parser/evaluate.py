@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from .errors import UnexpectedBinaryOperatorError
+from .errors import UnexpectedBinaryOperatorError, UnexpectedUnaryOperatorError
 from .parser import SyntaxTree, ExpressionSyntax
 from .types import SyntaxKind
 
@@ -32,6 +32,17 @@ class Evaluator:
                     case _:
                         raise UnexpectedBinaryOperatorError(
                             f"Can't recognize {operator.kind} as binary operator"
+                        )
+            case SyntaxKind.UNARY_EXPRESSION:
+                operator, expression = root.children()
+                match operator.kind:
+                    case SyntaxKind.PLUS:
+                        return self._evaluate(expression)
+                    case SyntaxKind.MINUS:
+                        return -self._evaluate(expression)
+                    case _:
+                        raise UnexpectedUnaryOperatorError(
+                            f"Can't recognize {operator.kind} as unary operator"
                         )
             case SyntaxKind.PARENTHESIZED_EXPRESSION:
                 return self._evaluate(root.expression)  # type: ignore

@@ -20,6 +20,7 @@ class SyntaxKind(Enum):
     BINARY_EXPRESSION = auto()
     PARENTHESIZED_EXPRESSION = auto()
     TWO_STAR = auto()
+    UNARY_EXPRESSION = auto()
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -87,3 +88,14 @@ class ParenthesizedExpression(ExpressionSyntax):
         yield self.opening_paren
         yield self.expression
         yield self.closing_paren
+
+
+@dataclass
+class UnaryExpressionSyntax(ExpressionSyntax):
+    operator: Token
+    expression: ExpressionSyntax
+    kind = SyntaxKind.UNARY_EXPRESSION
+
+    def children(self) -> Iterable[Any]:
+        yield self.operator
+        yield self.expression
