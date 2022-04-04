@@ -4,7 +4,9 @@ Yet Another Recursive Descent Parser.
 
 # About
 
-Mostly a toy project to help me understand more about how parsers and compilers work. Currently(and I don't imagine this changing) this is a REPL. Features
+Mostly a toy project to help me understand more about how parsers and compilers work. Currently(and I don't imagine this changing) this is a REPL.
+
+Features
 
 1. Generates an XML like Syntax Tree
 2. Provides an iterator based approach to loop over lexemes
@@ -52,6 +54,7 @@ Here are some of the implementation details
 2. The grammar is LL1
 3. The parser presently emits "ghost" tokens - these tokens are tokens which don't exist in the input but should be - this helps simplify the error handling
 4. Whitespace is preserved by the lexer but the parser currently ignores it
+5. Currently, only the Concrete Syntax Tree is generated - there isn't really any reason for this other than the fact that I found this easier to implement. In theory, it shouldn't be too difficult to convert this CST to an AST.
 
 # Run
 
