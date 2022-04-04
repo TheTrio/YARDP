@@ -4,7 +4,7 @@ Yet Another Recursive Descent Parser.
 
 # About
 
-Mostly a toy project to help me understand more about how parsers and compilers work. Currently(and possibly ever) this is a REPL. Features
+Mostly a toy project to help me understand more about how parsers and compilers work. Currently(and I don't imagine this changing) this is a REPL. Features
 
 1. Generates an XML like Syntax Tree
 2. Provides an iterator based approach to loop over lexemes
