@@ -1,41 +1,5 @@
-from dataclasses import dataclass
-from enum import Enum, auto
-from typing import Any, Optional
 from .errors import UnexpectedTokenError
-
-
-class SyntaxKind(Enum):
-    NUMBER = auto()
-    STAR = auto()
-    FORWARD_SLASH = auto()
-    PLUS = auto()
-    MINUS = auto()
-    OPEN_PAREN = auto()
-    CLOSE_PAREN = auto()
-    SPACE = auto()
-    INVALID = auto()
-    EOF = auto()
-    START = auto()
-    NUMBER_EXPRESSION = auto()
-    BINARY_EXPRESSION = auto()
-    PARENTHESIZED_EXPRESSION = auto()
-
-    def __str__(self) -> str:
-        return f"{self.name}"
-
-    def __repr__(self) -> str:
-        return f"{self.name}"
-
-
-@dataclass
-class Token:
-    kind: SyntaxKind
-    start: int
-    content: Optional[str] = None
-    value: Optional[int] = None
-
-    def children(self) -> list[Any]:
-        return []
+from .types import Token, SyntaxKind
 
 
 class Lexer:

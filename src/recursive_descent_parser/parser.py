@@ -1,58 +1,12 @@
-from dataclasses import dataclass
-from typing import Any, Iterable, Optional
+from typing import Any, Optional
 from .lexer import Lexer, SyntaxKind, Token
-from abc import ABC, abstractmethod
 from .errors import InvalidSyntaxTreeError, UnexpectedTokenError
-
-
-class SyntaxNode(ABC):
-    @abstractmethod
-    def children(self) -> Iterable[Any]:
-        ...
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.kind = ""
-        self.value = None
-
-
-class ExpressionSyntax(SyntaxNode):
-    ...
-
-
-@dataclass
-class NumberExpressionSyntax(ExpressionSyntax):
-    number_token: Token
-    kind = SyntaxKind.NUMBER_EXPRESSION
-
-    def children(self):
-        yield self.number_token
-
-
-@dataclass
-class BinaryExpressionSyntax(ExpressionSyntax):
-    left: ExpressionSyntax
-    operator: Token
-    right: ExpressionSyntax
-    kind = SyntaxKind.BINARY_EXPRESSION
-
-    def children(self):
-        yield self.left
-        yield self.operator
-        yield self.right
-
-
-@dataclass
-class ParenthesizedExpression(ExpressionSyntax):
-    opening_paren: Token
-    expression: ExpressionSyntax
-    closing_paren: Token
-    kind = SyntaxKind.PARENTHESIZED_EXPRESSION
-
-    def children(self):
-        yield self.opening_paren
-        yield self.expression
-        yield self.closing_paren
+from .types import (
+    ExpressionSyntax,
+    BinaryExpressionSyntax,
+    NumberExpressionSyntax,
+    ParenthesizedExpression,
+)
 
 
 class SyntaxTree:

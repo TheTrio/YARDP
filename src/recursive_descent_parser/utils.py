@@ -1,5 +1,6 @@
 from recursive_descent_parser.lexer import SyntaxKind
-from .parser import SyntaxNode, SyntaxTree
+from .parser import SyntaxTree
+from .types import SyntaxNode
 from termcolor import cprint
 from collections import defaultdict
 
