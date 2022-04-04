@@ -34,3 +34,10 @@ def _pretty_print(syntax: SyntaxNode, indent: int = 0):
 
 def pretty_print(syntax_tree: SyntaxTree):
     _pretty_print(syntax_tree.root)
+
+
+def divide(a, b):
+    if a % b == 0:
+        return a // b
+    else:
+        return a / b

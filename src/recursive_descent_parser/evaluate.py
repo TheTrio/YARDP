@@ -3,16 +3,17 @@ from dataclasses import dataclass
 from .errors import UnexpectedBinaryOperatorError, UnexpectedUnaryOperatorError
 from .parser import SyntaxTree, ExpressionSyntax
 from .types import SyntaxKind
+from .utils import divide
 
 
 @dataclass
 class Evaluator:
     syntax_tree: SyntaxTree
 
-    def evaluate(self) -> int:
+    def evaluate(self) -> float | int:
         return self._evaluate(self.syntax_tree.root)
 
-    def _evaluate(self, root: ExpressionSyntax) -> int:  # type: ignore
+    def _evaluate(self, root: ExpressionSyntax) -> float | int:  # type: ignore
         match root.kind:
             case SyntaxKind.NUMBER:
                 return root.value  # type: ignore
@@ -26,7 +27,7 @@ class Evaluator:
                     case SyntaxKind.STAR:
                         return self._evaluate(left) * self._evaluate(right)
                     case SyntaxKind.FORWARD_SLASH:
-                        return self._evaluate(left) // self._evaluate(right)
+                        return divide(self._evaluate(left), self._evaluate(right))
                     case SyntaxKind.TWO_STAR:
                         return self._evaluate(left) ** self._evaluate(right)
                     case _:
