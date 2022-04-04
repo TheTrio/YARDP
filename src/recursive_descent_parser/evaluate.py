@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
-from .errors import UnexpectedBinaryOperatorError, UnexpectedUnaryOperatorError
+from .errors import UnexpectedUnaryOperatorError
 from .parser import SyntaxTree, ExpressionSyntax
 from .types import SyntaxKind
-from .utils import divide
+from .utils import cast
 
 
 @dataclass
@@ -19,21 +19,7 @@ class Evaluator:
                 return root.value  # type: ignore
             case SyntaxKind.BINARY_EXPRESSION:
                 left, operator, right = root.children()
-                match operator.kind:
-                    case SyntaxKind.PLUS:
-                        return self._evaluate(left) + self._evaluate(right)
-                    case SyntaxKind.MINUS:
-                        return self._evaluate(left) - self._evaluate(right)
-                    case SyntaxKind.STAR:
-                        return self._evaluate(left) * self._evaluate(right)
-                    case SyntaxKind.FORWARD_SLASH:
-                        return divide(self._evaluate(left), self._evaluate(right))
-                    case SyntaxKind.TWO_STAR:
-                        return self._evaluate(left) ** self._evaluate(right)
-                    case _:
-                        raise UnexpectedBinaryOperatorError(
-                            f"Can't recognize {operator.kind} as binary operator"
-                        )
+                return cast(self._evaluate(left), operator, self._evaluate(right))
             case SyntaxKind.UNARY_EXPRESSION:
                 operator, expression = root.children()
                 match operator.kind:

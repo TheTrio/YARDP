@@ -27,7 +27,7 @@ class SyntaxTree:
 
         pretty_print(self)
 
-    def evaluate(self) -> Optional[int]:
+    def evaluate(self) -> Optional[int | float]:
         if self.errors:
             raise InvalidSyntaxTreeError()
         from .evaluate import Evaluator

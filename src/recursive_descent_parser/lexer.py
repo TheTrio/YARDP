@@ -16,6 +16,11 @@ class Lexer:
     def _next(self):
         self.position += 1
 
+    def _peek(self, offset=1):
+        if self.position + offset >= self.end:
+            return "\0"
+        return self.line[self.position + offset]
+
     @property
     def current(self):
         if self.position >= self.end:
@@ -30,12 +35,23 @@ class Lexer:
             start = self.position
             while self.current.isdigit():
                 self._next()
+            isFloat = False
+            if self.current == ".":
+                if self._peek().isdigit():
+                    self._next()
+                    while self.current.isdigit():
+                        self._next()
+                        isFloat = True
 
+            if isFloat:
+                value = float(self.line[start : self.position])
+            else:
+                value = int(self.line[start : self.position])
             return Token(
                 SyntaxKind.NUMBER,
                 start,
                 content=self.line[start : self.position],
-                value=int(self.line[start : self.position]),
+                value=value,
             )
 
         if self.current.isspace():

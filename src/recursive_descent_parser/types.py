@@ -21,6 +21,7 @@ class SyntaxKind(Enum):
     PARENTHESIZED_EXPRESSION = auto()
     TWO_STAR = auto()
     UNARY_EXPRESSION = auto()
+    DOT = auto()
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -45,7 +46,7 @@ class Token(SyntaxNode):
     kind: SyntaxKind
     start: int
     content: Optional[str] = None
-    value: Optional[int] = None
+    value: Optional[int | float] = None
 
     def children(self) -> list[Any]:
         return []

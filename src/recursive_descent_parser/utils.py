@@ -1,6 +1,7 @@
+from recursive_descent_parser.errors import UnexpectedBinaryOperatorError
 from recursive_descent_parser.lexer import SyntaxKind
 from .parser import SyntaxTree
-from .types import SyntaxNode
+from .types import SyntaxNode, Token
 from termcolor import cprint
 from collections import defaultdict
 
@@ -36,8 +37,21 @@ def pretty_print(syntax_tree: SyntaxTree):
     _pretty_print(syntax_tree.root)
 
 
-def divide(a, b):
-    if a % b == 0:
-        return a // b
+def cast(a: int | float, operator: Token, b: int | float) -> float | int:
+    match operator.kind:
+        case SyntaxKind.PLUS:
+            result = a + b
+        case SyntaxKind.MINUS:
+            result = a - b
+        case SyntaxKind.STAR:
+            result = a * b
+        case SyntaxKind.FORWARD_SLASH:
+            result = a / b
+        case SyntaxKind.TWO_STAR:
+            result = a**b
+        case _:
+            raise UnexpectedBinaryOperatorError()
+    if float(result) == int(result):
+        return int(result)
     else:
-        return a / b
+        return float(result)
