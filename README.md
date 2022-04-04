@@ -8,7 +8,7 @@ Mostly a toy project to help me understand more about how parsers and compilers 
 
 1. Generates an XML like Syntax Tree
 2. Provides an iterator based approach to loop over lexemes
-3. Understands binary operators like `/`, `*`, `+`, `-`
+3. Understands binary operators like `/`, `*`, `+`, `-`, `**`
 4. Can evaluate expressions
 5. Operator precedence works as expected
 6. `(` and `)` are allowed
