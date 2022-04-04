@@ -59,3 +59,11 @@ There is only one dependency - [termcolor](https://pypi.org/project/termcolor/) 
 ```
 python src/main.py
 ```
+
+If you use poetry, you can do
+
+```
+poetry install
+poetry shell
+python src/main.py
+```
