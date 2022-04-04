@@ -1,17 +1,22 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from .errors import UnexpectedUnaryOperatorError
 from .parser import SyntaxTree, ExpressionSyntax
 from .types import SyntaxKind
 from .utils import cast
+from termcolor import cprint
 
 
 @dataclass
 class Evaluator:
     syntax_tree: SyntaxTree
 
-    def evaluate(self) -> float | int:
-        return self._evaluate(self.syntax_tree.root)
+    def evaluate(self) -> Optional[float | int]:
+        try:
+            return self._evaluate(self.syntax_tree.root)
+        except ZeroDivisionError as e:
+            cprint(e, "red", attrs=["bold"])  # type: ignore
 
     def _evaluate(self, root: ExpressionSyntax) -> float | int:  # type: ignore
         match root.kind:
@@ -20,6 +25,7 @@ class Evaluator:
             case SyntaxKind.BINARY_EXPRESSION:
                 left, operator, right = root.children()
                 return cast(self._evaluate(left), operator, self._evaluate(right))
+
             case SyntaxKind.UNARY_EXPRESSION:
                 operator, expression = root.children()
                 match operator.kind:

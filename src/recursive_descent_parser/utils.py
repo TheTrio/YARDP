@@ -51,7 +51,6 @@ def cast(a: int | float, operator: Token, b: int | float) -> float | int:
             result = a**b
         case _:
             raise UnexpectedBinaryOperatorError()
-    if float(result) == int(result):
+    if type(result) is float and result % 1 == 0:
         return int(result)
-    else:
-        return float(result)
+    return result
