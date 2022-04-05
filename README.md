@@ -62,7 +62,7 @@ Here are some of the implementation details
 
 # Run
 
-There is one optional dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs.
+There is one optional dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs. If you don't want colored outputs, you need not install anything. 
 
 ```
 git clone https://github.com/TheTrio/YARDP.git
