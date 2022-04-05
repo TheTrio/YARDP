@@ -75,3 +75,13 @@ poetry install
 poetry shell
 python src/main.py
 ```
+
+# Linting/Testing
+
+The tests are in the `/tests` directory. To lint the code and run the tests, do
+
+```
+poetry shell
+pytest
+flake8
+```
