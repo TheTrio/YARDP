@@ -1,5 +1,5 @@
-from recursive_descent_parser.errors import UnexpectedBinaryOperatorError
-from recursive_descent_parser.lexer import SyntaxKind
+from .errors import UnexpectedBinaryOperatorError
+from .lexer import SyntaxKind
 from .parser import SyntaxTree
 from .types import SyntaxNode, Token
 from termcolor import cprint

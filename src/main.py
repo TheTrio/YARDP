@@ -1,5 +1,6 @@
-from recursive_descent_parser import SyntaxTree
+from src.recursive_descent_parser import SyntaxTree
 from termcolor import cprint
+
 
 if __name__ == "__main__":
     while True:

@@ -1,1 +1,1 @@
-from .parser import SyntaxTree
+from .parser import SyntaxTree  # noqa: F401
