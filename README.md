@@ -62,10 +62,12 @@ Here are some of the implementation details
 
 # Run
 
-There is only one dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs. Install it, and then run
+There is one optional dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs.
 
 ```
-python src/main.py
+git clone https://github.com/TheTrio/YARDP.git
+cd YARDP
+python -m src.main
 ```
 
 If you use poetry, you can do
@@ -73,7 +75,13 @@ If you use poetry, you can do
 ```
 poetry install
 poetry shell
-python src/main.py
+python -m src.main
+```
+
+By default, color support is disabled. To enable it, ensure that the termcolor package is installed and then run the program with the `--color` flag. 
+
+```
+python -m src.main --color
 ```
 
 # Linting/Testing
