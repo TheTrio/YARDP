@@ -104,4 +104,4 @@ class Parser:
                 right = self._match(SyntaxKind.CLOSE_PAREN)
                 return ParenthesizedExpression(left, expression, right)
             case _:
-                self._match(SyntaxKind.NUMBER_EXPRESSION)
+                return self._match(SyntaxKind.NUMBER_EXPRESSION)
