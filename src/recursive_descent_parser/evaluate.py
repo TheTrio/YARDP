@@ -5,7 +5,7 @@ from .errors import UnexpectedUnaryOperatorError
 from .parser import SyntaxTree, ExpressionSyntax
 from .types import SyntaxKind
 from .utils import cast
-from termcolor import cprint
+from src import cprint
 
 
 @dataclass

@@ -2,8 +2,8 @@ from .errors import UnexpectedBinaryOperatorError
 from .lexer import SyntaxKind
 from .parser import SyntaxTree
 from .types import SyntaxNode, Token
-from termcolor import cprint
 from collections import defaultdict
+from src import cprint
 
 colors = defaultdict(
     lambda: "red",
