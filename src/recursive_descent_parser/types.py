@@ -7,6 +7,7 @@ from abc import ABC, abstractmethod
 class SyntaxKind(Enum):
     NUMBER = auto()
     STAR = auto()
+    IMPLICIT_MULTIPLY = auto()
     FORWARD_SLASH = auto()
     PLUS = auto()
     MINUS = auto()

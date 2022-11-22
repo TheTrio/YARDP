@@ -5,7 +5,7 @@ def get_binary_operator_precedence(operator: Token):
     match operator.kind:
         case SyntaxKind.TWO_STAR:
             return 3
-        case SyntaxKind.FORWARD_SLASH | SyntaxKind.STAR:
+        case SyntaxKind.FORWARD_SLASH | SyntaxKind.STAR | SyntaxKind.OPEN_PAREN:
             return 2
         case SyntaxKind.PLUS | SyntaxKind.MINUS:
             return 1

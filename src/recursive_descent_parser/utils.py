@@ -43,7 +43,7 @@ def cast(a: int | float, operator: Token, b: int | float) -> float | int:
             result = a + b
         case SyntaxKind.MINUS:
             result = a - b
-        case SyntaxKind.STAR:
+        case SyntaxKind.STAR | SyntaxKind.IMPLICIT_MULTIPLY:
             result = a * b
         case SyntaxKind.FORWARD_SLASH:
             result = a / b

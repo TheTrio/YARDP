@@ -89,7 +89,13 @@ class Parser:
             precedence = get_binary_operator_precedence(self.current_token)
             if precedence == 0 or precedence <= parent_precedence:
                 break
-            operator = self._next()
+
+            if self.current_token.kind == SyntaxKind.OPEN_PAREN:
+                # this is for the case a(b) which should be equivalent to a * b
+                operator = Token(SyntaxKind.IMPLICIT_MULTIPLY, 0, "")
+            else:
+                operator = self._next()
+
             right = self.parse_expression(precedence)
             left = BinaryExpressionSyntax(left, operator, right)
         return left
