@@ -48,6 +48,18 @@ class TestParser:
     def test_unary_operators(self, tree: SyntaxTree, output: int | float):
         assert tree.evaluate() == output
 
+    @pytest.mark.parametrize(
+        "tree,output",
+        [
+            (SyntaxTree.generate("10(3 + 1)/4"), 10),
+            (SyntaxTree.generate("2(5)"), 10),
+            (SyntaxTree.generate("2**3(5)"), 40),
+            (SyntaxTree.generate("2 + 5(4)"), 22),
+        ],
+    )
+    def test_implicit_multiplication(self, tree: SyntaxTree, output: int | float):
+        assert tree.evaluate() == output
+
     def test_parse_tree(self):
         tree = SyntaxTree.generate("3**2 + (15 - 10) / 5")
         match tree.root:
