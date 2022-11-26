@@ -1,7 +1,7 @@
 from .errors import UnexpectedBinaryOperatorError
 from .lexer import SyntaxKind
 from .parser import SyntaxTree
-from .types import SyntaxNode, Token
+from .types import SyntaxNode
 from collections import defaultdict
 from src import cprint
 
@@ -37,7 +37,7 @@ def pretty_print(syntax_tree: SyntaxTree):
     _pretty_print(syntax_tree.root)
 
 
-def cast(a: int | float, operator: Token, b: int | float) -> float | int:
+def cast(a: int | float, operator: SyntaxNode, b: int | float) -> float | int:
     match operator.kind:
         case SyntaxKind.PLUS:
             result = a + b

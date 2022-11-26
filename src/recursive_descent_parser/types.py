@@ -33,7 +33,7 @@ class SyntaxKind(Enum):
 
 class SyntaxNode(ABC):
     @abstractmethod
-    def children(self) -> Iterable[Any]:
+    def children(self) -> Iterable["SyntaxNode"]:
         ...
 
     def __init__(self) -> None:

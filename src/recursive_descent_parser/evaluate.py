@@ -2,8 +2,8 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .errors import UnexpectedUnaryOperatorError
-from .parser import SyntaxTree, ExpressionSyntax
-from .types import SyntaxKind
+from .parser import SyntaxTree
+from .types import SyntaxKind, SyntaxNode
 from .utils import cast
 from src import cprint
 
@@ -18,7 +18,7 @@ class Evaluator:
         except ZeroDivisionError as e:
             cprint(e, "red", attrs=["bold"])  # type: ignore
 
-    def _evaluate(self, root: ExpressionSyntax) -> float | int:  # type: ignore
+    def _evaluate(self, root: SyntaxNode) -> float | int:  # type: ignore
         match root.kind:
             case SyntaxKind.NUMBER:
                 return root.value  # type: ignore
