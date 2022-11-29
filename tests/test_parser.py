@@ -29,9 +29,12 @@ class TestParser:
             (SyntaxTree.generate("-(-(-2)) + 10"), 8),
             (SyntaxTree.generate("-+-+-(1)"), -1),
             (SyntaxTree.generate("10 * (-5 + 3)"), -20),
+            (SyntaxTree.generate("~10 + 10 + 1"), 0),
+            (SyntaxTree.generate("~1"), -2),
+            (SyntaxTree.generate("~0"), -1),
         ],
     )
-    def test_binary_operators(self, tree: SyntaxTree, output: int | float):
+    def test_unary_operators(self, tree: SyntaxTree, output: int | float):
         assert tree.evaluate() == output
 
     @pytest.mark.parametrize(
@@ -43,9 +46,13 @@ class TestParser:
             (SyntaxTree.generate("2 ** 2 ** 3"), 64),
             (SyntaxTree.generate("2 ** (2 ** 3)"), 256),
             (SyntaxTree.generate("1 + 5 - 10 / 4"), 3.5),
+            (SyntaxTree.generate("1 | 2 + 3"), 5),
+            (SyntaxTree.generate("3 & 9"), 1),
+            (SyntaxTree.generate("3 & ~3"), 0),
+            (SyntaxTree.generate("3 | ~3"), -1),
         ],
     )
-    def test_unary_operators(self, tree: SyntaxTree, output: int | float):
+    def test_binary_operators(self, tree: SyntaxTree, output: int | float):
         assert tree.evaluate() == output
 
     @pytest.mark.parametrize(
