@@ -12,7 +12,7 @@ if __name__ == "__main__":
         syntax_tree.pretty_print()
         if not syntax_tree.errors:
             try:
-                if result := syntax_tree.evaluate():
+                if (result := syntax_tree.evaluate()) is not None:
                     print(result)
             except Exception as e:
                 cprint(
