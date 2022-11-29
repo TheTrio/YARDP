@@ -5,7 +5,6 @@ from .errors import UnexpectedUnaryOperatorError, UnexpectedDataTypeError
 from .parser import SyntaxTree
 from .types import SyntaxKind, SyntaxNode
 from .utils import cast
-from src import cprint
 
 
 @dataclass
@@ -13,10 +12,7 @@ class Evaluator:
     syntax_tree: SyntaxTree
 
     def evaluate(self) -> Optional[float | int]:
-        try:
-            return self._evaluate(self.syntax_tree.root)
-        except ZeroDivisionError as e:
-            cprint(e, "red", attrs=["bold"])  # type: ignore
+        return self._evaluate(self.syntax_tree.root)
 
     def _evaluate(self, root: SyntaxNode) -> float | int:  # type: ignore
         match root.kind:

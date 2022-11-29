@@ -11,5 +11,14 @@ if __name__ == "__main__":
             cprint(error, "red", attrs=["bold"])  # type: ignore
         syntax_tree.pretty_print()
         if not syntax_tree.errors:
-            if result := syntax_tree.evaluate():
-                print(result)
+            try:
+                if result := syntax_tree.evaluate():
+                    print(result)
+            except Exception as e:
+                cprint(
+                    "Received the following error while evaluating the expression",
+                    "red",
+                    attrs=["bold"],
+                    end="",
+                )
+                cprint(f": {e}", "magenta")
