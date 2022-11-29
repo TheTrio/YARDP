@@ -1,4 +1,4 @@
-from .errors import UnexpectedBinaryOperatorError
+from .errors import UnexpectedBinaryOperatorError, UnexpectedDataTypeError
 from .lexer import SyntaxKind
 from .parser import SyntaxTree
 from .types import SyntaxNode
@@ -49,6 +49,18 @@ def cast(a: int | float, operator: SyntaxNode, b: int | float) -> float | int:
             result = a / b
         case SyntaxKind.TWO_STAR:
             result = a**b
+        case SyntaxKind.OR:
+            if not isinstance(a, int) or not isinstance(b, int):
+                raise UnexpectedDataTypeError(
+                    f"Can't use OR operator on {type(a)} and {type(b)}"
+                )
+            result = a | b
+        case SyntaxKind.AND:
+            if not isinstance(a, int) or not isinstance(b, int):
+                raise UnexpectedDataTypeError(
+                    f"Can't use OR operator on {type(a)} and {type(b)}"
+                )
+            result = a & b
         case _:
             raise UnexpectedBinaryOperatorError()
     if type(result) is float and result % 1 == 0:

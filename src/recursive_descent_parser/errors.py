@@ -12,3 +12,7 @@ class InvalidSyntaxTreeError(Exception):
 
 class UnexpectedUnaryOperatorError(Exception):
     ...
+
+
+class UnexpectedDataTypeError(Exception):
+    ...

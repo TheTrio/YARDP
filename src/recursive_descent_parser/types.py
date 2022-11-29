@@ -23,6 +23,9 @@ class SyntaxKind(Enum):
     TWO_STAR = auto()
     UNARY_EXPRESSION = auto()
     DOT = auto()
+    AND = auto()
+    OR = auto()
+    NOT = auto()
 
     def __str__(self) -> str:
         return f"{self.name}"
