@@ -13,8 +13,8 @@ class Lexer:
         self.end = len(line)
         self.errors: list[Exception] = []
 
-    def _next(self):
-        self.position += 1
+    def _next(self, offset=1):
+        self.position += offset
 
     def _peek(self, offset=1):
         if self.position + offset >= self.end:
@@ -68,10 +68,10 @@ class Lexer:
                 self._next()
                 return Token(SyntaxKind.MINUS, self.position - 1, "-")
             case "*":
-                self._next()
-                if self.current == "*":
-                    self._next()
+                if self._peek() == "*":
+                    self._next(2)
                     return Token(SyntaxKind.TWO_STAR, self.position - 2, "*")
+                self._next(1)
                 return Token(SyntaxKind.STAR, self.position - 1, "*")
             case "/":
                 self._next()
