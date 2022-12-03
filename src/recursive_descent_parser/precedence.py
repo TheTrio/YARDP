@@ -4,8 +4,10 @@ from .types import Token, SyntaxKind
 def get_binary_operator_precedence(operator: Token):
     match operator.kind:
         case SyntaxKind.TWO_STAR:
-            return 4
+            return 5
         case SyntaxKind.FORWARD_SLASH | SyntaxKind.STAR | SyntaxKind.OPEN_PAREN:
+            return 4
+        case SyntaxKind.XOR:
             return 3
         case SyntaxKind.PLUS | SyntaxKind.MINUS:
             return 2

@@ -12,7 +12,7 @@ Features
 2. Provides an iterator based approach to loop over lexemes
 3. Understands binary operators like `/`, `*`, `+`, `-`, `**`.
 4. Understands `+` and `-` unary operators
-5. Support for Bitwise operators `&`, `|`, and `~`
+5. Support for Bitwise operators `&`, `|`, `~` and `^`
 6. Can evaluate expressions
 7. Operator precedence works as expected
 8. `(` and `)` are allowed and so are decimals

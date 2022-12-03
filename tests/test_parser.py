@@ -50,6 +50,9 @@ class TestParser:
             (SyntaxTree.generate("3 & 9"), 1),
             (SyntaxTree.generate("3 & ~3"), 0),
             (SyntaxTree.generate("3 | ~3"), -1),
+            (SyntaxTree.generate("3 ^ 3"), 0),
+            (SyntaxTree.generate("1 * 3 ^ 3"), 0),
+            (SyntaxTree.generate("2 * 3 ^ 3"), 5),
         ],
     )
     def test_binary_operators(self, tree: SyntaxTree, output: int | float):

@@ -26,6 +26,7 @@ class SyntaxKind(Enum):
     AND = auto()
     OR = auto()
     NOT = auto()
+    XOR = auto()
 
     def __str__(self) -> str:
         return f"{self.name}"

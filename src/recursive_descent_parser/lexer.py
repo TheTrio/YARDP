@@ -91,6 +91,9 @@ class Lexer:
             case "~":
                 self._next()
                 return Token(SyntaxKind.NOT, self.position - 1, "~")
+            case "^":
+                self._next()
+                return Token(SyntaxKind.XOR, self.position - 1, "^")
 
         self.errors.append(
             UnexpectedTokenError(f"ERROR: Bad character '{self.current}'")

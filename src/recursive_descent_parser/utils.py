@@ -61,6 +61,13 @@ def cast(a: int | float, operator: SyntaxNode, b: int | float) -> float | int:
                     f"Can't use OR operator on {type(a)} and {type(b)}"
                 )
             result = a & b
+
+        case SyntaxKind.XOR:
+            if not isinstance(a, int) or not isinstance(b, int):
+                raise UnexpectedDataTypeError(
+                    f"Can't use XOR operator on {type(a)} and {type(b)}"
+                )
+            return a ^ b
         case _:
             raise UnexpectedBinaryOperatorError()
     if type(result) is float and result % 1 == 0:
