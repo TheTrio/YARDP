@@ -10,11 +10,22 @@ Features
 
 1. Generates an XML like Syntax Tree
 2. Provides an iterator based approach to loop over lexemes
-3. Understands binary operators like `/`, `*`, `+`, `-`, `**`
+3. Understands binary operators like `/`, `*`, `+`, `-`, `**`.
 4. Understands `+` and `-` unary operators
-5. Can evaluate expressions
-6. Operator precedence works as expected
-7. `(` and `)` are allowed and so are decimals
+5. Support for Bitwise operators `&`, `|`, and `~`
+6. Can evaluate expressions
+7. Operator precedence works as expected
+8. `(` and `)` are allowed and so are decimals
+
+# Implementation
+
+Here are some of the implementation details
+
+1. The parser supports infinite lookahead, although since the current grammar is so simple, this is not necessary - in fact, the parser doesn't even need to look ahead at all - the lexer does all the work
+2. The grammar is LL1 - this means that the output tree is the leftmost derivation of the input string
+3. The parser presently emits "ghost" tokens - these tokens are tokens which don't exist in the input but should be - this helps simplify the error handling
+4. Whitespace is preserved by the lexer but the parser currently ignores it
+5. Currently, only the Concrete Syntax Tree is generated - there isn't really any reason for this other than the fact that I found this easier to implement. In theory, it shouldn't be too difficult to convert this CST to an AST.
 
 # Examples
 
@@ -50,19 +61,9 @@ Features
 
 ![image](https://user-images.githubusercontent.com/10794178/161539425-027ee732-9c03-41ae-840b-f970ecc45056.png)
 
-# Implementation
-
-Here are some of the implementation details
-
-1. The parser supports infinite lookahead, although since the current grammar is so simple, this is not necessary
-2. The grammar is LL1
-3. The parser presently emits "ghost" tokens - these tokens are tokens which don't exist in the input but should be - this helps simplify the error handling
-4. Whitespace is preserved by the lexer but the parser currently ignores it
-5. Currently, only the Concrete Syntax Tree is generated - there isn't really any reason for this other than the fact that I found this easier to implement. In theory, it shouldn't be too difficult to convert this CST to an AST.
-
 # Run
 
-There is one optional dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs. If you don't want colored outputs, you need not install anything. 
+There is one optional dependency - [termcolor](https://pypi.org/project/termcolor/) for generating colored outputs. If you don't want colored outputs, you need not install anything.
 
 ```
 git clone https://github.com/TheTrio/YARDP.git
@@ -78,7 +79,7 @@ poetry shell
 python -m src.main
 ```
 
-By default, color support is disabled. To enable it, ensure that the termcolor package is installed and then run the program with the `--color` flag. 
+By default, color support is disabled. To enable it, ensure that the termcolor package is installed and then run the program with the `--color` flag.
 
 ```
 python -m src.main --color
