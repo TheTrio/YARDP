@@ -21,7 +21,7 @@ Features
 
 Here are some of the implementation details
 
-1. The parser supports infinite lookahead, although since the current grammar is so simple, this is not necessary - in fact, the parser doesn't even need to look ahead at all - the lexer does all the work
+1. The parser supports infinite lookahead - this is a property of Recursive Descent Parsers.
 2. The grammar is LL1 - this means that the output tree is the leftmost derivation of the input string
 3. The parser presently emits "ghost" tokens - these tokens are tokens which don't exist in the input but should be - this helps simplify the error handling
 4. Whitespace is preserved by the lexer but the parser currently ignores it
