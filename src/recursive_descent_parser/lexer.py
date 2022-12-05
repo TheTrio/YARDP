@@ -1,5 +1,5 @@
 from .errors import UnexpectedTokenError
-from .types import Token, SyntaxKind
+from .SyntaxTypes import Token, SyntaxKind
 
 
 class Lexer:

@@ -1,4 +1,4 @@
-from .types import Token, SyntaxKind
+from .SyntaxTypes import Token, SyntaxKind
 
 
 def get_binary_operator_precedence(operator: Token):

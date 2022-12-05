@@ -1,4 +1,4 @@
-from src.recursive_descent_parser.types import (
+from src.recursive_descent_parser.SyntaxTypes import (
     BinaryExpressionSyntax,
     NumberExpressionSyntax,
     ParenthesizedExpression,

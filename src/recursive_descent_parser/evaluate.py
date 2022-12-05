@@ -3,7 +3,7 @@ from typing import Optional
 
 from .errors import UnexpectedUnaryOperatorError, UnexpectedDataTypeError
 from .parser import SyntaxTree
-from .types import SyntaxKind, SyntaxNode
+from .SyntaxTypes import SyntaxKind, SyntaxNode
 from .utils import cast
 
 

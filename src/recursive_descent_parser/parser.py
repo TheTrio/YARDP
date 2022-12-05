@@ -1,7 +1,7 @@
 from typing import Any, Optional
 from .lexer import Lexer, Token
 from .errors import InvalidSyntaxTreeError, UnexpectedTokenError
-from .types import (
+from .SyntaxTypes import (
     ExpressionSyntax,
     BinaryExpressionSyntax,
     NumberExpressionSyntax,
