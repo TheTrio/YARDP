@@ -22,7 +22,7 @@ Features
 Here are some of the implementation details
 
 1. The parser supports infinite lookahead - this is a property of Recursive Descent Parsers.
-2. The grammar is LL1 - this means that the output tree is the leftmost derivation of the input string
+2. The grammar is LL1 - this means that the output tree is the leftmost derivation of the input string and that we need just 1 lookahead to parse the input.
 3. The parser presently emits "ghost" tokens - these tokens are tokens which don't exist in the input but should be - this helps simplify the error handling
 4. Whitespace is preserved by the lexer but the parser currently ignores it
 5. Currently, only the Concrete Syntax Tree is generated - there isn't really any reason for this other than the fact that I found this easier to implement. In theory, it shouldn't be too difficult to convert this CST to an AST.
